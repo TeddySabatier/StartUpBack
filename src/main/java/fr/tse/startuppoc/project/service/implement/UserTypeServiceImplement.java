@@ -3,13 +3,11 @@ package fr.tse.startuppoc.project.service.implement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import fr.tse.startuppoc.project.entity.UserType;
 import fr.tse.startuppoc.project.repository.UserTypeRepository;
 import fr.tse.startuppoc.project.service.UserTypeService;
 
-@Service
 public class UserTypeServiceImplement implements UserTypeService {
 
 	@Autowired

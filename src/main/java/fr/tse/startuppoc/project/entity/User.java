@@ -4,16 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Data
@@ -31,7 +24,7 @@ public class User {
 	
 	private String password;
 	
-	@ManyToOne
+	@ManyToOne // Each User have one Type but one Type can have many User
 	private UserType type;
 
 	public Long getId() {
@@ -83,13 +76,10 @@ public class User {
 	}
 
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
 
