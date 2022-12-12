@@ -10,4 +10,6 @@ public interface UserService {
 	public User findById(Long id);
 	public User addUser(User user);
 	public User login(LoginUser loginUser);
+	public void deleteUser(User user);
+
 }
