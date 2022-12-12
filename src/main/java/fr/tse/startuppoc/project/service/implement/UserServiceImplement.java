@@ -39,4 +39,10 @@ public class UserServiceImplement implements UserService {
 		}
 		return null;
 	}
+	
+	@Override
+	public void deleteUser(User user) {
+		_userRepository.delete(user);
+		
+	}
 }

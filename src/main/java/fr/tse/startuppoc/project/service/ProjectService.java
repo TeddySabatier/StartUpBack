@@ -8,4 +8,5 @@ public interface ProjectService {
 	public List<Project> findAllProjects();
 	public Project findById(Long id);
 	public Project addProject(Project project);
+	public void deleteProject(Project project);
 }
