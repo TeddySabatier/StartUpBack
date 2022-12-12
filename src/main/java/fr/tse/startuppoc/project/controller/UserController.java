@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.tse.startuppoc.project.entity.Project;
 import fr.tse.startuppoc.project.entity.User;
 import fr.tse.startuppoc.project.service.UserService;
+import fr.tse.startuppoc.project.utils.LoginUser;
 
 @RestController
 @CrossOrigin(origins="*",maxAge=3600,methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH})
@@ -35,7 +35,12 @@ public class UserController {
 	}
 	
 	@PostMapping("/user")
-	User getUserById(@Valid @RequestBody User user) {
-		return this._userService.addUser(user);
+	User addProject(@Valid @RequestBody User user) {
+		return this._userService.addUser(user);		
+	}
+	
+	@PostMapping("/login")
+	User signIn(@Valid @RequestBody LoginUser loginUser) {
+		return this._userService.login(loginUser);		
 	}
 }

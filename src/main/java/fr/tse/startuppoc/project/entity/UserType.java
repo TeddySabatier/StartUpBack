@@ -41,5 +41,4 @@ public class UserType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

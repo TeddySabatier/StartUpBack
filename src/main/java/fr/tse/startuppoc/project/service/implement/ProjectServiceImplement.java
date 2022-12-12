@@ -29,9 +29,4 @@ public class ProjectServiceImplement implements ProjectService {
 	public Project addProject(Project project) {
 		return this._projectRepository.save(project);
 	}
-
-	@Override
-	public void deleteProject(Project project) {
-		this._projectRepository.delete(project);
-	}
 }
