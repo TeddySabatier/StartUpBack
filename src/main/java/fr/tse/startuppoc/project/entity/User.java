@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import fr.tse.startuppoc.project.repository.UserTypeRepository;
+import fr.tse.startuppoc.project.utils.Constants;
 import lombok.Data;
 
 @Entity
@@ -75,7 +79,7 @@ public class User {
 		this.type = type;
 	}
 
-	public User() {
+	public User() {		
 	}
 
 	@Override
@@ -90,6 +94,7 @@ public class User {
 		this.lastname = lastname;
 		this.login = login;
 		this.password = password;
+		
 	}
 	
 

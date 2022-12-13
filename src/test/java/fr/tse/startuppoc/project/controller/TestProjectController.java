@@ -16,6 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import net.minidev.json.JSONObject;
 
@@ -24,6 +25,7 @@ import net.minidev.json.JSONObject;
 @RunWith(SpringRunner.class)
 @ActiveProfiles(profiles="test")
 @AutoConfigureMockMvc
+@CrossOrigin("*")
 public class TestProjectController {
 	@Autowired
 	private MockMvc mvc;

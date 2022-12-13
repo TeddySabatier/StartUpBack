@@ -11,6 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.tse.startuppoc.project.entity.User;
+import fr.tse.startuppoc.project.utils.Constants;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
@@ -20,6 +21,10 @@ public class TestUserService {
 
 	@Autowired
 	UserService _userService;
+	
+
+	@Autowired
+	UserTypeService _userTypeService;
 	
 	@Test
 	public void testFindAllUser() {
@@ -48,5 +53,35 @@ public class TestUserService {
 		_userService.addUser(user);
 		_userService.deleteUser(user);
 		assertEquals(3, _userService.findAllUser().size());
+	}
+	
+	@Test
+	public void testToUser() {
+		User user=new User();
+		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_ADMIN));
+		_userService.addUser(user);
+		_userService.toUser(user);
+		assertEquals(Constants.ID_USER_TYPE_DEV, _userService.findById(user.getId()).getType().getId());
+		_userService.deleteUser(user);
+	}
+	
+	@Test
+	public void testToManager() {
+		User user=new User();
+		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		_userService.addUser(user);
+		_userService.toManager(user);
+		assertEquals(Constants.ID_USER_TYPE_MANAGER, _userService.findById(user.getId()).getType().getId());
+		_userService.deleteUser(user);
+	}
+	
+	@Test
+	public void testToAdmin() {
+		User user=new User();
+		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		_userService.addUser(user);
+		_userService.toAdmin(user);
+		assertEquals(Constants.ID_USER_TYPE_ADMIN, _userService.findById(user.getId()).getType().getId());
+		_userService.deleteUser(user);
 	}
 }
