@@ -28,6 +28,8 @@ class TestTimeDayRepository {
 	@Autowired
 	private TimeDayRepository _timeDayRepository;
 	
+	private static Long addedTimeDayId;
+	
 	@Test
 	@Order(1) // First test to be executed
 	void findAllTest() {
@@ -36,6 +38,7 @@ class TestTimeDayRepository {
 	}
 	
 	@Test
+	@Order(2)
 	void findByIdTest() {
 		TimeDay timeDay1 = this._timeDayRepository.findAll().get(0);
 		TimeDay timeDay2 = this._timeDayRepository.findById(1L).orElse(null);
@@ -45,20 +48,23 @@ class TestTimeDayRepository {
 	}
 	
 	@Test
+	@Order(3)
 	void saveTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
 		TimeDay timeDay = new TimeDay();
-		this._timeDayRepository.save(timeDay);
+		TimeDay addedTimeDay = this._timeDayRepository.save(timeDay);
+		addedTimeDayId = addedTimeDay.getId();
 		
 		int finalSize = this._timeDayRepository.findAll().size();
 		assertEquals(finalSize, initialSize + 1);
 	}
 	
 	@Test
+	@Order(4)
 	void deleteTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
-		TimeDay timeDay = new TimeDay();
-		timeDay.setId(5L);
+		TimeDay timeDay = this._timeDayRepository.findById(addedTimeDayId).orElse(null);
+		assertNotNull(timeDay);
 		this._timeDayRepository.delete(timeDay);
 		
 		int finalSize = this._timeDayRepository.findAll().size();

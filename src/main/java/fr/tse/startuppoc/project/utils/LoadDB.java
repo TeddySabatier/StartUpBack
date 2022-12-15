@@ -97,6 +97,7 @@ public class LoadDB {
 		user3.setId(3L);
 		
 		TimeDay timeDay1 = new TimeDay();
+		timeDay1.setDate(Date.valueOf("2022-12-13"));
 		timeDay1.setGranularity((float) 0.5);
 		timeDay1.setProject(project1);
 		timeDay1.setUser(user1);

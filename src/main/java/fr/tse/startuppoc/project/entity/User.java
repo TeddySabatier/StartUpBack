@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Data;
 
 @Entity
@@ -22,6 +25,7 @@ public class User {
 	
 	private String login;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	
 	@ManyToOne // Each User have one Type but one Type can have many User
