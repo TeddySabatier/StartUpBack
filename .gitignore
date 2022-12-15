@@ -13,6 +13,7 @@ target/
 .springBeans
 .sts4-cache
 .sonarlint
+.metadata
 
 ### IntelliJ IDEA ###
 .idea

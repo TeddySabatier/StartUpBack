@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.tse.startuppoc.project.entity.TimeDay;
 import fr.tse.startuppoc.project.repository.TimeDayRepository;
@@ -17,16 +18,19 @@ public class TimeDayServiceImplement implements TimeDayService {
 	private TimeDayRepository _timeDayRepository;
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<TimeDay> findAllTimeDay() {
 		return this._timeDayRepository.findAll();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public TimeDay findById(Long id) {
 		return this._timeDayRepository.findById(id).orElse(null);
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<TimeDay> findByUserId(Long id) {
 		List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
 		List<TimeDay> res = new ArrayList<TimeDay>();
@@ -38,6 +42,7 @@ public class TimeDayServiceImplement implements TimeDayService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<TimeDay> findByProjectId(Long id) {
 		List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
 		List<TimeDay> res = new ArrayList<TimeDay>();
@@ -49,16 +54,13 @@ public class TimeDayServiceImplement implements TimeDayService {
 	}
 
 	@Override
+	@Transactional
 	public TimeDay addTimeDay(TimeDay timeDay) {
 		return this._timeDayRepository.save(timeDay);
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		this._timeDayRepository.deleteById(id);
-	}
-	
-	@Override
+	@Transactional
 	public void deleteOneTimeDay(TimeDay timeDay) {
 		this._timeDayRepository.delete(timeDay);
 	}
