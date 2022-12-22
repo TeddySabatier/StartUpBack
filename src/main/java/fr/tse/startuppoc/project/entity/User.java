@@ -1,10 +1,19 @@
 package fr.tse.startuppoc.project.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,7 +39,10 @@ public class User {
 	
 	@ManyToOne // Each User have one Type but one Type can have many User
 	private UserType type;
-
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<User> developers;
+	
 	public Long getId() {
 		return id;
 	}
@@ -79,7 +91,16 @@ public class User {
 		this.type = type;
 	}
 
+	public Set<User> getDevelopers() {
+		return developers;
+	}
+
+	public void setDevelopers(Set<User> developers) {
+		this.developers = developers;
+	}
+
 	public User() {		
+		this.developers= new HashSet<User>();
 	}
 
 	@Override
@@ -94,6 +115,7 @@ public class User {
 		this.lastname = lastname;
 		this.login = login;
 		this.password = password;
+		
 		
 	}
 	

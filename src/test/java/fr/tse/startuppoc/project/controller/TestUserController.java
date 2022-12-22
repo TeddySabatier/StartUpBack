@@ -61,7 +61,7 @@ public class TestUserController {
 	}
 	
 	@Test
-	public void testAddDeveloper() throws Exception {
+	public void testAddUser() throws Exception {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("firstname", "testAdd");
 		jsonObject.put("lastname", "test");
@@ -138,4 +138,5 @@ public class TestUserController {
 		.andExpect(jsonPath("$.length()",is(3)));
 
 	}
+	
 }

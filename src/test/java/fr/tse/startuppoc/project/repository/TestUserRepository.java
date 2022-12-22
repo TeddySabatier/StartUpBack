@@ -58,6 +58,6 @@ public class TestUserRepository {
 		assertEquals(4,this._userRepository.findAll().size());
 		this._userRepository.delete(user);
 	}
-		
+	
 
 }
