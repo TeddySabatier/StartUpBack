@@ -17,8 +17,12 @@ import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import fr.tse.startuppoc.project.repository.UserTypeRepository;
 import fr.tse.startuppoc.project.utils.Constants;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Data;
 
 @Entity
@@ -35,6 +39,7 @@ public class User {
 	
 	private String login;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	
 	@ManyToOne // Each User have one Type but one Type can have many User

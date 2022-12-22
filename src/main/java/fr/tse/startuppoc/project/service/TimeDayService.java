@@ -11,6 +11,5 @@ public interface TimeDayService {
 	public List<TimeDay> findByProjectId(Long id);
 	
 	public TimeDay addTimeDay(TimeDay timeDay);
-	public void deleteById(Long id);
 	public void deleteOneTimeDay(TimeDay timeDay);
 }
