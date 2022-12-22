@@ -84,4 +84,102 @@ public class TestUserService {
 		assertEquals(Constants.ID_USER_TYPE_ADMIN, _userService.findById(user.getId()).getType().getId());
 		_userService.deleteUser(user);
 	}
+	
+	@Test
+	public void testAddDeveloper() {
+		User user=new User();
+		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		user=_userService.addUser(user);
+		
+		User manager=new User();
+		manager.setType(_userTypeService.findById(Constants.ID_USER_TYPE_MANAGER));
+		manager=_userService.addUser(manager);
+		
+		User falseManager=new User();
+		falseManager.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		falseManager=_userService.addUser(falseManager);
+		
+		User admin=new User();
+		admin.setType(_userTypeService.findById(Constants.ID_USER_TYPE_ADMIN));
+		admin=_userService.addUser(admin);
+		
+		try {
+			_userService.addDeveloper(manager, user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			_userService.addDeveloper(falseManager, user);
+		} catch (Exception e) {
+
+		}
+		try {
+			_userService.addDeveloper(admin, user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		assertEquals(_userService.findById(manager.getId()).getDevelopers().size(), 1);
+		assertEquals(_userService.findById(admin.getId()).getDevelopers().size(), 1);
+		assertEquals(_userService.findById(falseManager.getId()).getDevelopers().size(), 0);
+		
+		
+		_userService.deleteUser(admin);
+		_userService.deleteUser(falseManager);
+		_userService.deleteUser(manager);
+		_userService.deleteUser(user);
+	}
+	
+	@Test
+	public void testRemoveDeveloper() {
+		User user=new User();
+		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		user=_userService.addUser(user);
+		
+		User manager=new User();
+		manager.setType(_userTypeService.findById(Constants.ID_USER_TYPE_MANAGER));
+		manager=_userService.addUser(manager);
+		
+		User falseManager=new User();
+		falseManager.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
+		falseManager=_userService.addUser(falseManager);
+		
+		User admin=new User();
+		admin.setType(_userTypeService.findById(Constants.ID_USER_TYPE_ADMIN));
+		admin=_userService.addUser(admin);
+		
+		try {
+			_userService.addDeveloper(manager, user);
+			_userService.removeDeveloper(manager, user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			_userService.toManager(falseManager);
+			falseManager=_userService.findById(falseManager.getId());
+			_userService.addDeveloper(falseManager, user);
+			_userService.toUser(falseManager);
+			falseManager=_userService.findById(falseManager.getId());
+			_userService.removeDeveloper(falseManager, user);
+		} catch (Exception e) {
+
+		}
+		try {
+			_userService.addDeveloper(admin, user);
+			_userService.removeDeveloper(admin, user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(_userService.findById(manager.getId()).getDevelopers().size(), 0);
+		assertEquals(_userService.findById(admin.getId()).getDevelopers().size(), 0);
+		assertEquals(_userService.findById(falseManager.getId()).getDevelopers().size(), 1);
+		
+		
+		_userService.deleteUser(admin);
+		_userService.deleteUser(falseManager);
+		_userService.deleteUser(manager);
+		_userService.deleteUser(user);
+	}
 }

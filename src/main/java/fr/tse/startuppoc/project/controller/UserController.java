@@ -41,7 +41,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/user")
-	User addProject(@Valid @RequestBody User user) {
+	User addUser(@Valid @RequestBody User user) {
 		return this._userService.addUser(user);		
 	}
 	
@@ -72,5 +72,17 @@ public class UserController {
 	@DeleteMapping("/user")
 	void deleteUser(@Valid @RequestBody User user) {
 		_userService.deleteUser(user);
+	};
+	
+	@PostMapping("/adddeveloper/{id}")
+	void addDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
+		User Manager = _userService.findById(id);
+		_userService.addDeveloper(Manager, user);
+	};
+	
+	@PostMapping("/removedeveloper/{id}")
+	void removeDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
+		User Manager = _userService.findById(id);
+		_userService.removeDeveloper(Manager, user);
 	};
 }
