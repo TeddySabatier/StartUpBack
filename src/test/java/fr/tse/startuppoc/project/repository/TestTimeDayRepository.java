@@ -49,6 +49,27 @@ class TestTimeDayRepository {
 	
 	@Test
 	@Order(3)
+	void findByProjectIdTest() {
+		List<TimeDay> list = this._timeDayRepository.findByProjectId(1L);
+		assertEquals(2, list.size());
+	}
+	
+	@Test
+	@Order(4)
+	void findByUserIdTest() {
+		List<TimeDay> list = this._timeDayRepository.findByUserId(1L);
+		assertEquals(2, list.size());
+	}
+	
+	@Test
+	@Order(5)
+	void findByUserIdAndProjectIdTest() {
+		List<TimeDay> list = this._timeDayRepository.findByUserIdAndProjectId(1L, 1L);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	@Order(6)
 	void saveTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
 		TimeDay timeDay = new TimeDay();
@@ -60,7 +81,7 @@ class TestTimeDayRepository {
 	}
 	
 	@Test
-	@Order(4)
+	@Order(7)
 	void deleteTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
 		TimeDay timeDay = this._timeDayRepository.findById(addedTimeDayId).orElse(null);

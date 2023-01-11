@@ -60,6 +60,13 @@ class TestTimeDayService {
 	
 	@Test
 	@Order(5)
+	void findByUserIdAndProjectIdTest() {
+		List<TimeDay> timeDay4UserId1AndProjectId1 = this._timeDayService.findByUserIdAndProjectId(1L, 1L);
+		assertEquals(1, timeDay4UserId1AndProjectId1.size());
+	}
+	
+	@Test
+	@Order(6)
 	void addTimeDayTest() {
 		int initialSize = this._timeDayService.findAllTimeDay().size();
 		TimeDay newTimeDay = new TimeDay();
@@ -71,7 +78,7 @@ class TestTimeDayService {
 	}
 	
 	@Test
-	@Order(6)
+	@Order(7)
 	void deleteOneTimeDayTest() {
 		int initialSize = this._timeDayService.findAllTimeDay().size();
 		TimeDay timeDay = this._timeDayService.findById(addedTimeDayId);

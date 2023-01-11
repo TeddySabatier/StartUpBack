@@ -1,6 +1,5 @@
 package fr.tse.startuppoc.project.service.implement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,26 +30,41 @@ public class TimeDayServiceImplement implements TimeDayService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<TimeDay> findByUserId(Long id) {
-		List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
-		List<TimeDay> res = new ArrayList<TimeDay>();
-		
-		for (TimeDay timeDay : allTimeDay) {
-			if (timeDay.getUser().getId() == id) res.add(timeDay);
-		}
-		return res;
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
 	public List<TimeDay> findByProjectId(Long id) {
-		List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
+		/*List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
 		List<TimeDay> res = new ArrayList<TimeDay>();
 		
 		for (TimeDay timeDay : allTimeDay) {
 			if (timeDay.getProject().getId() == id) res.add(timeDay);
 		}
-		return res;
+		return res;*/
+		return this.findByProjectId(id);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<TimeDay> findByUserId(Long id) {
+		/*List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
+		List<TimeDay> res = new ArrayList<TimeDay>();
+		
+		for (TimeDay timeDay : allTimeDay) {
+			if (timeDay.getUser().getId() == id) res.add(timeDay);
+		}
+		return res;*/
+		return this._timeDayRepository.findByUserId(id);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<TimeDay> findByUserIdAndProjectId(Long userId, Long projectId) {
+		/*List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
+		List<TimeDay> res = new ArrayList<TimeDay>();
+		
+		for (TimeDay timeDay : allTimeDay) {
+			if (timeDay.getUser().getId() == userId && timeDay.getProject().getId() == projectId) res.add(timeDay);
+		}
+		return res;*/
+		return this._timeDayRepository.findByUserIdAndProjectId(userId, projectId);
 	}
 
 	@Override
