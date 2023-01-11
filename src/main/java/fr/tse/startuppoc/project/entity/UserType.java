@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import fr.tse.startuppoc.project.utils.Constants;
 import lombok.Data;
 
 @Entity
@@ -24,6 +25,7 @@ public class UserType {
 	}
 
 	public UserType() {
+		//this.id = Constants.ID_USER_TYPE_DEV;
 	}
 
 	public Long getId() {

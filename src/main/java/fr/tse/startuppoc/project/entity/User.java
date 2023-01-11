@@ -100,7 +100,8 @@ public class User {
 		this.developers = developers;
 	}
 
-	public User() {		
+	public User() {
+		this.type = new UserType(Constants.ID_USER_TYPE_DEV, Constants.NAME_USER_TYPE_DEV);
 		this.developers= new HashSet<User>();
 	}
 
