@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import fr.tse.startuppoc.project.utils.Constants;
 import net.minidev.json.JSONObject;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -132,6 +133,81 @@ public class TestUserController {
 		
 		mvc.perform(delete("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObject.toJSONString()))
 		.andExpect(status().isOk());
+		
+		mvc.perform(get("/users").contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.length()",is(3)));
+
+	}
+	
+	@Test
+	public void testChangeManager() throws Exception {
+		JSONObject jsonObjectUser = new JSONObject();
+		jsonObjectUser.put("firstname", "testAdd");
+		jsonObjectUser.put("lastname", "test");
+		jsonObjectUser.put("login", "test");
+		jsonObjectUser.put("password", "test1");
+		JSONObject jsonObjectDeveloperType=new JSONObject();
+		jsonObjectDeveloperType.put("id", Constants.ID_USER_TYPE_DEV);
+		jsonObjectDeveloperType.put("name", Constants.NAME_USER_TYPE_DEV);
+		jsonObjectUser.put("type", jsonObjectDeveloperType);
+
+		
+		mvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectUser.toJSONString()))
+		.andExpect(status().isOk());
+		
+		jsonObjectUser.put("id", 6);
+		
+		JSONObject jsonObjectManagerType=new JSONObject();
+		jsonObjectManagerType.put("id", Constants.ID_USER_TYPE_MANAGER);
+		jsonObjectManagerType.put("name", Constants.NAME_USER_TYPE_MANAGER);
+		
+		JSONObject jsonObjectNewManager= new JSONObject();
+		jsonObjectNewManager.put("firstname", "testAdd");
+		jsonObjectNewManager.put("lastname", "test");
+		jsonObjectNewManager.put("login", "testNewManager");
+		jsonObjectNewManager.put("password", "test1");
+		jsonObjectNewManager.put("type", jsonObjectManagerType);
+		
+		mvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectNewManager.toJSONString()))
+		.andExpect(status().isOk());
+		
+		jsonObjectNewManager.put("id", 7);
+		
+		JSONObject jsonObjectOldManager= new JSONObject();
+		jsonObjectOldManager.put("firstname", "testAdd");
+		jsonObjectOldManager.put("lastname", "test");
+		jsonObjectOldManager.put("login", "testNewManager");
+		jsonObjectOldManager.put("password", "test1");
+		jsonObjectOldManager.put("type", jsonObjectManagerType);
+		
+		mvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectOldManager.toJSONString()))
+		.andExpect(status().isOk());
+		
+		jsonObjectOldManager.put("id", 8);
+		
+		mvc.perform(post("/adddeveloper/8").contentType(MediaType.APPLICATION_JSON).content(jsonObjectUser.toJSONString()))
+		.andExpect(status().isOk());
+
+		
+		mvc.perform(post("/changemanager/8/7").contentType(MediaType.APPLICATION_JSON).content(jsonObjectUser.toJSONString()))
+		.andExpect(status().isOk());
+		
+
+		mvc.perform(get("/users/7").contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())	
+		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("developers.length()",is(1)));
+		
+
+
+		mvc.perform(delete("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectUser.toJSONString()))
+		.andExpect(status().isOk());
+		mvc.perform(delete("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectNewManager.toJSONString()))
+		.andExpect(status().isOk());
+		mvc.perform(delete("/user").contentType(MediaType.APPLICATION_JSON).content(jsonObjectOldManager.toJSONString()))
+		.andExpect(status().isOk());
+	
 		
 		mvc.perform(get("/users").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())

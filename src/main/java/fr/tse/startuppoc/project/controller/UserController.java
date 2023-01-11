@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,19 +71,31 @@ public class UserController {
 	};
 	
 	@DeleteMapping("/user")
-	void deleteUser(@Valid @RequestBody User user) {
+	void deleteUser(@Valid @RequestBody User user) throws Exception {
 		_userService.deleteUser(user);
 	};
 	
 	@PostMapping("/adddeveloper/{id}")
-	void addDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
+	User addDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
 		User Manager = _userService.findById(id);
 		_userService.addDeveloper(Manager, user);
+		return _userService.findById(Manager.getId());
 	};
 	
 	@PostMapping("/removedeveloper/{id}")
-	void removeDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
+	User removeDeveloper(@PathVariable Long id,@Valid @RequestBody User user) throws Exception {
 		User Manager = _userService.findById(id);
 		_userService.removeDeveloper(Manager, user);
+		return _userService.findById(Manager.getId());
+	};
+	
+	@Transactional
+	@PostMapping("/changemanager/{idOldManager}/{idNewManager}")
+	void changeManager(@PathVariable Long idOldManager,@PathVariable Long idNewManager, @Valid @RequestBody User Developer) throws Exception {
+		User OldManager = _userService.findById(idOldManager);
+		User NewManager = _userService.findById(idNewManager);
+		User developer=_userService.findById(Developer.getId());
+		_userService.removeDeveloper(OldManager, developer);
+		_userService.addDeveloper(NewManager, developer);
 	};
 }
