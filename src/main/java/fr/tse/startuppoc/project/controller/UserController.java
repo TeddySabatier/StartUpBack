@@ -1,6 +1,7 @@
 package fr.tse.startuppoc.project.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -80,6 +81,12 @@ public class UserController {
 		User Manager = _userService.findById(id);
 		_userService.addDeveloper(Manager, user);
 		return _userService.findById(Manager.getId());
+	};
+	
+	@GetMapping("/getdevelopers/{id}")
+	Set<User> addDeveloper(@PathVariable Long id) throws Exception {
+		User User = _userService.findById(id);
+		return _userService.findById(User.getId()).getDevelopers();
 	};
 	
 	@PostMapping("/removedeveloper/{id}")
