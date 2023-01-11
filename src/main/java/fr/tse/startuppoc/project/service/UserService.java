@@ -11,7 +11,7 @@ public interface UserService {
 	public User findById(Long id);
 	public User addUser(User user);
 	public User login(LoginUser loginUser);
-	public void deleteUser(User user);
+	public void deleteUser(User user) throws Exception;
 	public User toUser(User user);
 	public User toManager(User user);
 	public User toAdmin(User user);

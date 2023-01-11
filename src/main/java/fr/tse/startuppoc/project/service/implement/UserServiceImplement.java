@@ -51,12 +51,16 @@ public class UserServiceImplement implements UserService {
 	
 	@Override
 	@Transactional
-	public void deleteUser(User user) {
+	public void deleteUser(User user) throws Exception{
 		this._userRepository.findAll().forEach(userTemp ->{
 			this._userRepository.save(userTemp);
 			userTemp.getDevelopers().forEach(underUser ->{
 				if(underUser.getId()==user.getId()) {
-					userTemp.getDevelopers().remove(user);
+						try {
+							this.removeDeveloper(userTemp, user);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+						}
 				}
 			});
 		});
