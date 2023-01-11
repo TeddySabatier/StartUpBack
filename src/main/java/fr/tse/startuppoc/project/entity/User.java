@@ -112,6 +112,7 @@ public class User {
 
 	public User(Long id, String firstname, String lastname, String login, String password) {
 		super();
+		System.out.println(login);
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
