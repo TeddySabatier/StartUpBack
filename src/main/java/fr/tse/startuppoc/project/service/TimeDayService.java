@@ -7,8 +7,9 @@ public interface TimeDayService {
 	public List<TimeDay> findAllTimeDay();
 	public TimeDay findById(Long id);
 	
-	public List<TimeDay> findByUserId(Long id);
 	public List<TimeDay> findByProjectId(Long id);
+	public List<TimeDay> findByUserId(Long id);
+	public List<TimeDay> findByUserIdAndProjectId(Long userId, Long projectId);
 	
 	public TimeDay addTimeDay(TimeDay timeDay);
 	public void deleteOneTimeDay(TimeDay timeDay);

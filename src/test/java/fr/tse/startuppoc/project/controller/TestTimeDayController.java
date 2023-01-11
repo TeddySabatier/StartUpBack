@@ -82,6 +82,16 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(5)
+	void getTimeDayByUserIdAndProjectIdTest() throws Exception {
+		mvc.perform(get("/timeday/user/1/project/1").contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())
+		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("$.size()",is(1)))
+		.andExpect(jsonPath("$[0].id",is(1)));
+	}
+	
+	@Test
+	@Order(6)
 	void postTimeDayTest() throws Exception {
 		mvc.perform(get("/timeday").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
@@ -105,7 +115,7 @@ class TestTimeDayController {
 	}
 	
 	@Test
-	@Order(6)
+	@Order(7)
 	void deleteTimeDayTest() throws Exception {
 		mvc.perform(get("/timeday").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())

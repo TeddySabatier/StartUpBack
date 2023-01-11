@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\PC\Documents\FISE3\Semestre 9\Projet StatUp POC\GitHub\StartUpBack"/>
 			<item value="C:\Users\PC\Documents\FISE3\Semestre 9\Projet StatUp POC\projet-startup-poc-back"/>
 		</list>
 	</section>

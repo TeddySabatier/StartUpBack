@@ -39,6 +39,11 @@ public class TimeDayController {
 		return this._timeDayService.findByUserId(id);
 	}
 	
+	@GetMapping("/timeday/user/{userId}/project/{projectId}")
+	List<TimeDay> getTimeDayByUserIdAndProjectId(@PathVariable Long userId, @PathVariable Long projectId) {
+		return this._timeDayService.findByUserIdAndProjectId(userId, projectId);
+	}
+	
 	@GetMapping("/timeday/project/{id}")
 	List<TimeDay> getTimeDayByProjectId(@PathVariable Long id) {
 		return this._timeDayService.findByProjectId(id);
