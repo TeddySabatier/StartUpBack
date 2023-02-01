@@ -1,16 +1,14 @@
 package fr.tse.startuppoc.project.controller;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.runner.RunWith;
@@ -22,7 +20,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import net.minidev.json.JSONObject;
 
@@ -32,14 +29,14 @@ import net.minidev.json.JSONObject;
 @ActiveProfiles(profiles="test")
 @AutoConfigureMockMvc
 @TestMethodOrder(OrderAnnotation.class) // Define the order in which tests are executed
-class TestTimeDayController {
+public class TestTimeDayController {
 
 	@Autowired
 	private MockMvc mvc;
 	
 	@Test
 	@Order(1) // First test to be executed
-	void getAllTimeDayTest() throws Exception {
+	public void getAllTimeDayTest() throws Exception {
 		mvc.perform(get("/timeday").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -48,7 +45,7 @@ class TestTimeDayController {
 
 	@Test
 	@Order(2)
-	void getTimeDayByIdTest() throws Exception {
+	public void getTimeDayByIdTest() throws Exception {
 		mvc.perform(get("/timeday/1").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -60,7 +57,7 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(3)
-	void getTimeDayByUserIdTest() throws Exception {
+	public void getTimeDayByUserIdTest() throws Exception {
 		mvc.perform(get("/timeday/user/1").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -71,7 +68,7 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(4)
-	void getTimeDayByProjectIdTest() throws Exception {
+	public void getTimeDayByProjectIdTest() throws Exception {
 		mvc.perform(get("/timeday/project/1").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -82,7 +79,7 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(5)
-	void getTimeDayByUserIdAndProjectIdTest() throws Exception {
+	public void getTimeDayByUserIdAndProjectIdTest() throws Exception {
 		mvc.perform(get("/timeday/user/1/project/1").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -92,7 +89,7 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(6)
-	void postTimeDayTest() throws Exception {
+	public void postTimeDayTest() throws Exception {
 		mvc.perform(get("/timeday").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -116,7 +113,7 @@ class TestTimeDayController {
 	
 	@Test
 	@Order(7)
-	void deleteTimeDayTest() throws Exception {
+	public void deleteTimeDayTest() throws Exception {
 		mvc.perform(get("/timeday").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

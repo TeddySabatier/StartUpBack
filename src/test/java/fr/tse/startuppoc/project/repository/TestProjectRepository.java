@@ -23,13 +23,13 @@ public class TestProjectRepository {
 	private ProjectRepository _projectRepository;
 	
 	@Test
-	void testFindAllProjects(){
+	public void testFindAllProjects(){
 		List<Project> projects = this._projectRepository.findAll();
 		assertEquals(2, projects.size());	
 	}
 	
 	@Test
-	void testFindById(){
+	public void testFindById(){
 		List<Project> projects = this._projectRepository.findAll();
 		Project project = this._projectRepository.findById(projects.get(0).getId()).orElse(null);
 		
@@ -37,7 +37,7 @@ public class TestProjectRepository {
 	}
 	
 	@Test
-	void testAddProject() {
+	public void testAddProject() {
 		/*Project project = new Project();
 		project.setName("Test");
 		this._projectRepository.save(project);
