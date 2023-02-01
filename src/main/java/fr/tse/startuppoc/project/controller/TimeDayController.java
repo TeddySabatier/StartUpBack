@@ -18,7 +18,7 @@ import fr.tse.startuppoc.project.entity.TimeDay;
 import fr.tse.startuppoc.project.service.TimeDayService;
 
 @RestController
-@CrossOrigin(origins="*",maxAge=3600,methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins="*",maxAge=3600,methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH, RequestMethod.DELETE})
 public class TimeDayController {
 
 	@Autowired
@@ -57,5 +57,11 @@ public class TimeDayController {
 	@DeleteMapping("/timeday")
 	void deleteTimeDay(@Valid @RequestBody TimeDay timeDay) {
 		this._timeDayService.deleteOneTimeDay(timeDay);
+	}
+	
+	@DeleteMapping("/timeday/{id}")
+	void deleteTimeDay(@PathVariable Long id) {
+		System.out.println("delete");
+		this._timeDayService.deleteById(id);
 	}
 }
