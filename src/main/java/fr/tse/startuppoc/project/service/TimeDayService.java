@@ -13,4 +13,5 @@ public interface TimeDayService {
 	
 	public TimeDay addTimeDay(TimeDay timeDay);
 	public void deleteOneTimeDay(TimeDay timeDay);
+	public void deleteById(Long id);
 }

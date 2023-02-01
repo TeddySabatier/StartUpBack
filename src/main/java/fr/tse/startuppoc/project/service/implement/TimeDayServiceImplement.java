@@ -38,7 +38,7 @@ public class TimeDayServiceImplement implements TimeDayService {
 			if (timeDay.getProject().getId() == id) res.add(timeDay);
 		}
 		return res;*/
-		return this.findByProjectId(id);
+		return this._timeDayRepository.findByProjectId(id);
 	}
 	
 	@Override
@@ -77,5 +77,11 @@ public class TimeDayServiceImplement implements TimeDayService {
 	@Transactional
 	public void deleteOneTimeDay(TimeDay timeDay) {
 		this._timeDayRepository.delete(timeDay);
+	}
+	
+	@Override
+	@Transactional
+	public void deleteById(Long id) {
+		this._timeDayRepository.deleteById(id);
 	}
 }

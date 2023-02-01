@@ -24,7 +24,7 @@ import fr.tse.startuppoc.project.utils.Constants;
 import fr.tse.startuppoc.project.utils.LoginUser;
 
 @RestController
-@CrossOrigin(origins="*",maxAge=3600,methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins="*",maxAge=3600,methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH,RequestMethod.DELETE})
 public class UserController {
 
 	@Autowired
