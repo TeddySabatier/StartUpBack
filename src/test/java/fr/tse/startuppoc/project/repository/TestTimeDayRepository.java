@@ -23,7 +23,7 @@ import fr.tse.startuppoc.project.entity.TimeDay;
 @RunWith(SpringRunner.class)
 @ActiveProfiles(profiles="test")
 @TestMethodOrder(OrderAnnotation.class) // Define the order in which tests are executed
-class TestTimeDayRepository {
+public class TestTimeDayRepository {
 
 	@Autowired
 	private TimeDayRepository _timeDayRepository;
@@ -32,14 +32,14 @@ class TestTimeDayRepository {
 	
 	@Test
 	@Order(1) // First test to be executed
-	void findAllTest() {
+	public void findAllTest() {
 		List<TimeDay> allTimeDay = this._timeDayRepository.findAll();
 		assertEquals(4, allTimeDay.size());
 	}
 	
 	@Test
 	@Order(2)
-	void findByIdTest() {
+	public void findByIdTest() {
 		TimeDay timeDay1 = this._timeDayRepository.findAll().get(0);
 		TimeDay timeDay2 = this._timeDayRepository.findById(1L).orElse(null);
 		assertNotNull(timeDay2);
@@ -49,28 +49,28 @@ class TestTimeDayRepository {
 	
 	@Test
 	@Order(3)
-	void findByProjectIdTest() {
+	public void findByProjectIdTest() {
 		List<TimeDay> list = this._timeDayRepository.findByProjectId(1L);
 		assertEquals(2, list.size());
 	}
 	
 	@Test
 	@Order(4)
-	void findByUserIdTest() {
+	public void findByUserIdTest() {
 		List<TimeDay> list = this._timeDayRepository.findByUserId(1L);
 		assertEquals(2, list.size());
 	}
 	
 	@Test
 	@Order(5)
-	void findByUserIdAndProjectIdTest() {
+	public void findByUserIdAndProjectIdTest() {
 		List<TimeDay> list = this._timeDayRepository.findByUserIdAndProjectId(1L, 1L);
 		assertEquals(1, list.size());
 	}
 	
 	@Test
 	@Order(6)
-	void saveTest() {
+	public void saveTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
 		TimeDay timeDay = new TimeDay();
 		TimeDay addedTimeDay = this._timeDayRepository.save(timeDay);
@@ -82,7 +82,7 @@ class TestTimeDayRepository {
 	
 	@Test
 	@Order(7)
-	void deleteTest() {
+	public void deleteTest() {
 		int initialSize = this._timeDayRepository.findAll().size();
 		TimeDay timeDay = this._timeDayRepository.findById(addedTimeDayId).orElse(null);
 		assertNotNull(timeDay);

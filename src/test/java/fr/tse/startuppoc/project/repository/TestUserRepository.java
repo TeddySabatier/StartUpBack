@@ -26,13 +26,13 @@ public class TestUserRepository {
 	UserRepository _userRepository;
 	
 	@Test
-	void testFindAllusers(){
+	public void testFindAllusers(){
 		List<User> users = this._userRepository.findAll();
 		assertEquals(3, users.size());		
 	}
 	
 	@Test
-	void testFindById(){
+	public void testFindById(){
 		List<User> users = this._userRepository.findAll();
 		User user = this._userRepository.findById(users.get(0).getId()).orElse(null);
 		
@@ -43,7 +43,7 @@ public class TestUserRepository {
 		assertEquals(user.getType().getName(), users.get(0).getType().getName());
 	}
 	@Test
-	void testDeleteuser() {
+	public void testDeleteuser() {
 		User user = new User();
 		user.setFirstname("Test");
 		this._userRepository.save(user);		
@@ -51,7 +51,7 @@ public class TestUserRepository {
 		assertEquals(3,this._userRepository.findAll().size());
 	}
 	@Test
-	void testAdduser() {
+	public void testAdduser() {
 		User user = new User();
 		user.setFirstname("Test");
 		this._userRepository.save(user);

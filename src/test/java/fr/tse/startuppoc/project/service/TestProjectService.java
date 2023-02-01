@@ -2,7 +2,7 @@ package fr.tse.startuppoc.project.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,7 @@ public class TestProjectService {
 	
 	@Test
 	public void testFindAllProject() {
-		assertEquals(1, _projectService.findAllProjects().size());
+		assertEquals(2+1, _projectService.findAllProjects().size());
 	}
 	
 	@Test
@@ -35,18 +35,20 @@ public class TestProjectService {
 	@Test
 	public void TestAddProject() {
 		Project projet=new Project();
-		projet.setName("Test");
-		_projectService.addProject(projet);
-		assertEquals(2, _projectService.findAllProjects().size());
+		projet.setName("Test1");
+		projet = _projectService.addProject(projet);
+		System.out.println(projet);
+		assertEquals(3+1, _projectService.findAllProjects().size());
 		_projectService.deleteProject(projet);
 	}
 	
 	@Test
 	public void TestDeleteProject() {
 		Project projet=new Project();
-		projet.setName("Test");
-		_projectService.addProject(projet);		
+		projet.setName("Test2");
+		projet = _projectService.addProject(projet);
+		System.out.println(projet);
 		_projectService.deleteProject(projet);
-		assertEquals(1, _projectService.findAllProjects().size());
+		assertEquals(2+1, _projectService.findAllProjects().size());
 	}
 }

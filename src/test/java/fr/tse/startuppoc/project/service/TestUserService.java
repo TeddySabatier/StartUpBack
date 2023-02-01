@@ -2,7 +2,7 @@ package fr.tse.startuppoc.project.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,7 +38,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testAddUser() {
+	public void testAddUser() throws Exception {
 		User user=new User();
 		user.setFirstname("test");
 		_userService.addUser(user);
@@ -47,7 +47,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testDeleteUser() {
+	public void testDeleteUser() throws Exception {
 		User user=new User();
 		user.setFirstname("test");
 		_userService.addUser(user);
@@ -56,7 +56,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testToUser() {
+	public void testToUser() throws Exception {
 		User user=new User();
 		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_ADMIN));
 		_userService.addUser(user);
@@ -66,7 +66,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testToManager() {
+	public void testToManager() throws Exception {
 		User user=new User();
 		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
 		_userService.addUser(user);
@@ -76,7 +76,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testToAdmin() {
+	public void testToAdmin() throws Exception {
 		User user=new User();
 		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
 		_userService.addUser(user);
@@ -86,7 +86,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testAddDeveloper() {
+	public void testAddDeveloper() throws Exception {
 		User user=new User();
 		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
 		user=_userService.addUser(user);
@@ -132,7 +132,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testRemoveDeveloper() {
+	public void testRemoveDeveloper() throws Exception {
 		User user=new User();
 		user.setType(_userTypeService.findById(Constants.ID_USER_TYPE_DEV));
 		user=_userService.addUser(user);
