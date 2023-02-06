@@ -19,19 +19,21 @@ import fr.tse.startuppoc.project.repository.UserTypeRepository;
 @Configuration
 public class LoadDB {
 
-//	@Bean
-//	@Profile("!test")
-//	CommandLineRunner initDB(ProjectRepository _projectRepository, 
-//			UserRepository _userRepository, 
-//			UserTypeRepository _userTypeRepository, 
-//			TimeDayRepository _timeDayRepository) {
-//
-//		return args -> {	
-//			System.out.println("TEST");
-//			//System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
-//			initUserTypesTest(_userTypeRepository);
-//		};
-//	}
+	@Bean
+	@Profile("!test")
+	CommandLineRunner initDB(ProjectRepository _projectRepository, 
+			UserRepository _userRepository, 
+			UserTypeRepository _userTypeRepository, 
+			TimeDayRepository _timeDayRepository) {
+
+		return args -> {	
+			System.out.println("TEST");
+			//System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+			if(_userTypeRepository.findAll().size()==0) {
+				initUserTypesTest(_userTypeRepository);
+			}
+		};
+	}
 	@Bean
 	@Profile("test")
 	CommandLineRunner initDBTest(ProjectRepository _projectRepository, 
