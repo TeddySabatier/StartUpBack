@@ -42,6 +42,28 @@ public class LoadDB {
 		};
 	}
 	@Bean
+	@Profile("!test")
+	CommandLineRunner initDB(ProjectRepository _projectRepository, 
+			UserRepository _userRepository, 
+			UserTypeRepository _userTypeRepository, 
+			TimeDayRepository _timeDayRepository) {
+
+		return args -> {	
+			System.out.println("TEST");
+			//System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+			if(_userTypeRepository.findAll().size()==0) {
+				initUserTypesTest(_userTypeRepository);
+				User admin=new User();
+				admin.setFirstname("Admin");
+				admin.setLastname("Admin");
+				admin.setLogin("admin");
+				admin.setPassword("QTvBVVOF/LG9DveJ5eZc1IMI/d2aqTQbpABcsBS5n34=");
+				admin.setType(_userTypeRepository.getById(Constants.ID_USER_TYPE_ADMIN));
+				_userRepository.save(admin);
+			}
+		};
+	}
+	@Bean
 	@Profile("test")
 	CommandLineRunner initDBTest(ProjectRepository _projectRepository, 
 			UserRepository _userRepository, 

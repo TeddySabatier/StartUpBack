@@ -61,7 +61,6 @@ public class TimeDayController {
 	
 	@DeleteMapping("/timeday/{id}")
 	void deleteTimeDay(@PathVariable Long id) {
-		System.out.println("delete");
 		this._timeDayService.deleteById(id);
 	}
 }
