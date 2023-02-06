@@ -31,6 +31,13 @@ public class LoadDB {
 			//System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
 			if(_userTypeRepository.findAll().size()==0) {
 				initUserTypesTest(_userTypeRepository);
+				User admin=new User();
+				admin.setFirstname("Admin");
+				admin.setLastname("Admin");
+				admin.setLogin("admin");
+				admin.setPassword("QTvBVVOF/LG9DveJ5eZc1IMI/d2aqTQbpABcsBS5n34=");
+				admin.setType(_userTypeRepository.getById(Constants.ID_USER_TYPE_ADMIN));
+				_userRepository.save(admin);
 			}
 		};
 	}
