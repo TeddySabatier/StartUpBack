@@ -71,8 +71,9 @@ public class UserController {
 		return _userService.findById(user.getId());
 	};
 	
-	@DeleteMapping("/user")
-	void deleteUser(@Valid @RequestBody User user) throws Exception {
+	@DeleteMapping("/user/{id}")
+	void deleteUser(@PathVariable Long id) throws Exception {
+		User user = _userService.findById(id);
 		_userService.deleteUser(user);
 	};
 	

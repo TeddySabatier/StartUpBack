@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.tse.startuppoc.project.entity.User;
+import fr.tse.startuppoc.project.repository.TimeDayRepository;
 import fr.tse.startuppoc.project.repository.UserRepository;
 import fr.tse.startuppoc.project.repository.UserTypeRepository;
 import fr.tse.startuppoc.project.service.UserService;
@@ -24,6 +25,9 @@ public class UserServiceImplement implements UserService {
 	
 	@Autowired
 	private UserTypeRepository _userTypeRepository;
+	
+	@Autowired
+	private TimeDayRepository _timeDayRepository;
 	
 	@Override
 	public List<User> findAllUser() {
@@ -63,6 +67,10 @@ public class UserServiceImplement implements UserService {
 						}
 				}
 			});
+			
+		});
+		this._timeDayRepository.findByUserId(user.getId()).forEach(timeDayTemp ->{
+			this._timeDayRepository.delete(timeDayTemp);
 		});
 		this._userRepository.delete(this._userRepository.findById(user.getId()).orElse(null));
 		
