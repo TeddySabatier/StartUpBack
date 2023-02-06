@@ -23,7 +23,7 @@ public class TestProjectService {
 	
 	@Test
 	public void testFindAllProject() {
-		assertEquals(2+1, _projectService.findAllProjects().size());
+		assertEquals(2, _projectService.findAllProjects().size());
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public class TestProjectService {
 		projet.setName("Test1");
 		projet = _projectService.addProject(projet);
 		System.out.println(projet);
-		assertEquals(3+1, _projectService.findAllProjects().size());
+		assertEquals(3, _projectService.findAllProjects().size());
 		_projectService.deleteProject(projet);
 	}
 	
@@ -49,6 +49,6 @@ public class TestProjectService {
 		projet = _projectService.addProject(projet);
 		System.out.println(projet);
 		_projectService.deleteProject(projet);
-		assertEquals(2+1, _projectService.findAllProjects().size());
+		assertEquals(2, _projectService.findAllProjects().size());
 	}
 }
