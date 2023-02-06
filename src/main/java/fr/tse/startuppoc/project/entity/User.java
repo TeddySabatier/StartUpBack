@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import fr.tse.startuppoc.project.repository.UserTypeRepository;
-import fr.tse.startuppoc.project.utils.Constants;
+==== BASE ====
+==== BASE ====
 import lombok.Data;
 
 @Entity
