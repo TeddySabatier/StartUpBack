@@ -13,12 +13,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+==== BASE ====
+==== BASE ====
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import fr.tse.startuppoc.project.repository.UserTypeRepository;
 import fr.tse.startuppoc.project.utils.Constants;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Data;
 
 @Entity
